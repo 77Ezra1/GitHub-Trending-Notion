@@ -1,0 +1,29 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(powershell -ExecutionPolicy Bypass -File \"D:\\\\GitHub-Trending-Notion\\\\setup_scheduled_task.ps1\")",
+      "Bash(powershell -Command:*)",
+      "Bash(powershell -ExecutionPolicy Bypass -Command \"\n$scriptPath = ''D:\\\\GitHub-Trending-Notion''\n$pythonScript = $scriptPath + ''\\\\github_trending_notion.py''\n$taskName = ''GitHubTrendingToNotion''\n\n$task = Get-ScheduledTask -TaskName $taskName -ErrorAction SilentlyContinue\nif \\($task\\) {\n  Unregister-ScheduledTask -TaskName $taskName -Confirm:$false\n  Write-Host ''Old task removed''\n}\n\n$action = New-ScheduledTaskAction -Execute ''python'' -Argument $pythonScript -WorkingDirectory $scriptPath\n$trigger = New-ScheduledTaskTrigger -Daily -At 09:00\n$settings = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries\n\nRegister-ScheduledTask -TaskName $taskName -Action $action -Trigger $trigger -Settings $settings\n\nWrite-Host ''=== Task Created ===''\nWrite-Host ''Name: GitHubTrendingToNotion''\nWrite-Host ''Schedule: Daily at 09:00''\nGet-ScheduledTask -TaskName $taskName\n\")",
+      "Bash(powershell -ExecutionPolicy Bypass -File \"D:\\\\GitHub-Trending-Notion\\\\create_task.ps1\")",
+      "Bash(del \"D:\\\\GitHub-Trending-Notion\\\\create_task.ps1\")",
+      "Bash(python -m pip install:*)",
+      "Bash(python desktop_client.py:*)",
+      "Bash(pyinstaller:*)",
+      "WebSearch",
+      "Bash(pip install:*)",
+      "WebFetch(domain:github.com)",
+      "Bash(build_exe.bat)",
+      "Bash(cmd /c build_exe.bat:*)",
+      "Bash(dir:*)",
+      "Bash(powershell -command \"\\(Get-Item ''D:\\\\GitHub-Trending-Notion\\\\dist\\\\GitHubTrendingToNotion.exe''\\).Length / 1MB\")",
+      "Skill(github-upload)",
+      "Bash(gh auth status:*)",
+      "Bash(git init:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git branch:*)",
+      "Bash(gh repo create:*)",
+      "Bash(git push:*)"
+    ]
+  }
+}
